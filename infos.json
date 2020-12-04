@@ -1,5 +1,5 @@
 {
-    "displayName" : "Firewall Config",
+    "displayName" : "Firewall Rules",
     "author" : ["Léa DROGUET"],
     "contributor" : [],
     "supportedAgent" : ["Unix", "Windows"],
@@ -7,7 +7,7 @@
     "licence" : "GPLv2",
     "description" : 
         {
-            "fr" : "Remonte la configuration firewall",
-            "en" : "Retrieve firewall configuration"
+            "fr" : "Remonte les règles firewall",
+            "en" : "Retrieve firewall rules"
         }
     }

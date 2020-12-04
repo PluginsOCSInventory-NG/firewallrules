@@ -1,11 +1,11 @@
-# Plugin "Firewall Config" OCSInventory
+# Plugin "Firewall Rules" OCSInventory
 # Author: Léa DROGUET
 
-package Ocsinventory::Agent::Modules::Firewall;
+package Ocsinventory::Agent::Modules::Firewallrules;
 
 
 sub new {
-    my $name="firewall";   #Set the name of your module here
+    my $name="firewallrules";   #Set the name of your module here
     
 
     my (undef,$context) = @_;
@@ -36,7 +36,7 @@ sub new {
 
 ######### Hook methods ############
 
-sub example_inventory_handler {        #Use this hook to add or modify entries in the inventory XML
+sub firewallrules_inventory_handler {        #Use this hook to add or modify entries in the inventory XML
     my $self = shift;
     my $logger = $self->{logger};
     my $common = $self->{context}->{common};
@@ -51,7 +51,7 @@ sub example_inventory_handler {        #Use this hook to add or modify entries i
         COLUMN_2  => [$col2],
     };
     
-    $logger->debug("Yeah you are in example_inventory_handler :)");
+    $logger->debug("Yeah you are in firewallrules_inventory_handler :)");
 
 }
 

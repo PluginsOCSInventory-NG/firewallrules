@@ -9,14 +9,14 @@
  * This function is called on installation and is used to 
  * create database schema for the plugin
  */
-function extension_install_firewall_conf() {
+function extension_install_firewallrules() {
     $commonObject = new ExtensionCommon;
 
     $commonObject -> sqlQuery(
-        "CREATE TABLE firewall_rule (
-        RULE_ID INTEGER NOT NULL AUTO_INCREMENT, 
-        HARDWARE_ID INTEGER NOT NULL,
-        DISPLAY_NAME VARCHAR(255) NOT NULL,
+        "CREATE TABLE IF NOT EXISTS `firewallrules` (
+        RULE_ID INT(11) NOT NULL AUTO_INCREMENT, 
+        HARDWARE_ID INT(11) NOT NULL,
+        DISPLAYNAME VARCHAR(255) NOT NULL,
         DESCRIPTION VARCHAR(255) NOT NULL,
         ENABLED VARCHAR(255) NOT NULL,
         DIRECTION VARCHAR(255) NOT NULL,
@@ -31,16 +31,16 @@ function extension_install_firewall_conf() {
  * This function is called on removal and is used to 
  * destroy database schema for the plugin
  */
-function extension_delete_firewall_conf()
+function extension_delete_firewallrules()
 {
     $commonObject = new ExtensionCommon;
-    $commonObject -> sqlQuery("DROP TABLE IF EXISTS `firewall_rule`");
+    $commonObject -> sqlQuery("DROP TABLE IF EXISTS `firewallrules`");
 }
 
 /**
  * This function is called on plugin upgrade
  */
-function extension_upgrade_firewall_conf()
+function extension_upgrade_firewallrules()
 {
 
 }

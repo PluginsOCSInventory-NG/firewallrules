@@ -5,9 +5,9 @@
         <value>en_GB</value>
     </hook>
     <hook type="cdentry">
-        <identifier>cd_firewall_conf</identifier>
+        <identifier>cd_firewallrules</identifier>
         <translation>1234</translation>
         <category>network</category>
-        <available>firewall_conf</available>
+        <available>firewallrules</available>
     </hook>
 </hookstore>

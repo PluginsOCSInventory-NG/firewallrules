@@ -1,14 +1,6 @@
 <?php
-###############################################################################
-## OCSINVENTORY-NG
-## Copyleft Léa DROGUET 2020
-## Web : http://www.ocsinventory-ng.org
-##
-## This code is open source and may be copied and modified as long as the source
-## code is always made freely available.
-## Please refer to the General Public Licence http://www.gnu.org/ or Licence.txt
-################################################################################
-
+# Plugin "Firewall Rules" OCSInventory
+# Author: Léa DROGUETT
 
  /**
   * This file is used to build a table refering to the plugin and define its 
@@ -42,18 +34,20 @@ $tab_options['table_name'] = $table_name;
 
 echo open_form($form_name);
 $list_fields = array(
-                    'Name' => 'NAME',
-                    'Protocol' => 'PROTOCOL',
-                    'Direction' => 'DIRECTION',
+                    'Name' => 'DISPLAYNAME',
                     'Description' => 'DESCRIPTION',
-                    'Target' => 'TARGET');
+                    'Direction' => 'DIRECTION',
+                    'Enabled' => 'ENABLED',
+                    'Action' => 'ACTION',
+                    'Protocol' => 'PROTOCOL',
+                    'Port' => 'PORT');
 // columns to include at any time and default columns
 $list_col_cant_del = $list_fields;
 $default_fields = $list_fields;
 
 // select columns for table display
 $sql = prepare_sql_tab($list_fields);
-$sql['SQL']  .= "FROM firewall_rule WHERE (hardware_id = $systemid)";
+$sql['SQL']  .= "FROM firewallrules WHERE (hardware_id = $systemid)";
 
 array_push($sql['ARG'], $systemid);
 $tab_options['ARG_SQL'] = $sql['ARG'];

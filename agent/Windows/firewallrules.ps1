@@ -1,4 +1,4 @@
-# Plugin "Firewall Config" OCSInventory
+# Plugin "Firewall Rules" OCSInventory
 # Author: Léa DROGUET
 
 $rules = Get-NetFirewallRule | Select-Object -Property DisplayName, Description, Enabled, 
@@ -6,10 +6,10 @@ $rules = Get-NetFirewallRule | Select-Object -Property DisplayName, Description,
 @{Name='LocalPort';Expression={($PSItem | Get-NetFirewallPortFilter).LocalPort}}, 
 Direction, Action
 
-$xml += "<FIREWALL_RULES>"
+$xml += "<FIREWALLRULES>"
 foreach ($rule in $rules) {
     $xml += "`t<RULE>`n"
-    $xml += "`t`t<DISPLAY_NAME>"+ $rule.DisplayName +"</DISLAYNAME>`n" 
+    $xml += "`t`t<DISPLAYNAME>"+ $rule.DisplayName +"</DISLAYNAME>`n" 
     $xml += "`t`t<DESCRIPTION>"+ $rule.Description +"</DESCRIPTION>`n"
     $xml += "`t`t<ENABLED>"+ $rule.Enabled +"</ENABLED>`n"
     $xml += "`t`t<DIRECTION>"+ $rule.Direction +"</DIRECTION>`n"
@@ -17,8 +17,7 @@ foreach ($rule in $rules) {
     $xml += "`t`t<PORT>"+ $rule.LocalPort +"</PORT>`n"
     $xml += "`t`t<PROTOCOL>"+ $rule.Protocol +"</PROTOCOL>`n"
     $xml += "`t</RULE>`n"
-    $instanceID = $rule.InstanceID
 }
 
-$xml += "</FIREWALL_RULES>"
+$xml += "</FIREWALLRULES>"
 echo $xml
