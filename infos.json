@@ -1,0 +1,13 @@
+{
+    "displayName" : "Firewall Config",
+    "author" : ["Léa DROGUET"],
+    "contributor" : [],
+    "supportedAgent" : ["Unix", "Windows"],
+    "version" : "1",
+    "licence" : "GPLv2",
+    "description" : 
+        {
+            "fr" : "Remonte la configuration firewall",
+            "en" : "Retrieve firewall configuration"
+        }
+    }
