@@ -72,7 +72,7 @@ sub firewallrules_inventory_handler {
 
 sub _getFirewallRules {
     # iptables -n --list | sed '/^num\|^$\|^target\|^Chain/d'
-    my @rules = `iptables -L -n`;
+    my @rules = `iptables --list -n | sed '/^$\|^target/d'`;
     return @rules;
 }
 
