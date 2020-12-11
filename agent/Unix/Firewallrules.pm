@@ -1,6 +1,9 @@
 # Plugin "Firewall Rules" OCSInventory
 # Author: Léa DROGUET
 
+# TODO :
+# must be a better way to skip lines
+
 package Ocsinventory::Agent::Modules::Firewallrules;
 
 sub new {
@@ -34,34 +37,38 @@ sub firewallrules_inventory_handler {
     my $logger = $self->{logger};
     my $common = $self->{context}->{common};
 
-     # default values for testing
-    $displayName = "TEST";
-    $description = "DESCR TEST";
+    # default values for testing
+    $displayName = "iptables rule";
     $enabled = "TRUE";
-    $port = "ANY";
+    
 
     $logger->debug("Yeah you are in firewallrules_inventory_handler:)");
-
+    
     my %rules;
+    my ($direction, $action, $protocol, $opt, $source, $destination, $comment);
+    
     foreach my $rule (_getFirewallRules()) {
+        if ($rule =~ /^target/) {
+            next;
+        }
+        if ($rule =~ /^\s*$/) {
+            next;
+        }
         # if line contains "chain", second word is direction
         if ($rule =~ /Chain/) {
-            my (undef, $direction, undef, undef) = split(' ', $rule);
-
+            (undef, $direction, undef, undef) = split(' ', $rule);
         } else {
-            # if line contains target, go next
-            next if $rule =~ /target/;
-            my ($action, $protocol, undef, undef, undef, undef) = split(' ', $rule);
+            ($action, $protocol, $opt, $source, $destination, $comment) = split(' ', $rule);
         }
 
         push @{$common->{xmltags}->{FIREWALLRULES}},
         {
             DISPLAYNAME => [$displayName],
-            DESCRIPTION    => [$description],
+            DESCRIPTION    => ["$source => $destination"],
             ENABLED   => [$enabled],
             DIRECTION  => [$direction],
             ACTION  => [$action],
-            PORT  => [$port],
+            PORT  => [$comment],
             PROTOCOL => [$protocol]
         };
     }
@@ -69,10 +76,8 @@ sub firewallrules_inventory_handler {
 }
 
 
-
 sub _getFirewallRules {
-    # iptables -n --list | sed '/^num\|^$\|^target\|^Chain/d'
-    my @rules = `iptables --list -n | sed '/^$\|^target/d'`;
+    my @rules = `iptables --list -n`;
     return @rules;
 }
 
