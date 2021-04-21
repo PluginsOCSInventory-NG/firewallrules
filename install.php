@@ -11,7 +11,7 @@
  */
 function extension_install_firewallrules() {
     $commonObject = new ExtensionCommon;
-
+    $commonObject -> sqlQuery("DROP TABLE IF EXISTS `firewallrules`");
     $commonObject -> sqlQuery(
         "CREATE TABLE IF NOT EXISTS `firewallrules` (
         RULE_ID INT(11) NOT NULL AUTO_INCREMENT, 
