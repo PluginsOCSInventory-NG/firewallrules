@@ -65,7 +65,6 @@ sub firewallrules_inventory_handler {
         {
             DISPLAYNAME => [$displayName],
             DESCRIPTION    => ["$source => $destination"],
-            ENABLED   => [$enabled],
             SOURCE => [$source],
             DESTINATION => [$destination],
             DIRECTION  => [$direction],

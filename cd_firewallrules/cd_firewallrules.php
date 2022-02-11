@@ -31,18 +31,33 @@ $tab_options = $protectedPost;
 $tab_options['form_name'] = $form_name;
 $tab_options['table_name'] = $table_name;
 
+$item = info($protectedGet, $protectedPost['systemid']);
 
 echo open_form($form_name);
-$list_fields = array(
-                    'Name' => 'DISPLAYNAME',
-                    'Description' => 'DESCRIPTION',
-                    'Source' => 'SOURCE',
-                    'Destination' => 'DESTINATION',
-                    'Direction' => 'DIRECTION',
-                    'Enabled' => 'ENABLED',
-                    'Action' => 'ACTION',
-                    'Protocol' => 'PROTOCOL',
-                    'Port' => 'PORT');
+
+if (preg_match('/unix/', $item->USERAGENT)) {
+    $list_fields = array(
+        'Name' => 'DISPLAYNAME',
+        'Description' => 'DESCRIPTION',
+        'Source' => 'SOURCE',
+        'Destination' => 'DESTINATION',
+        'Direction' => 'DIRECTION',
+        'Enabled' => 'ENABLED',
+        'Action' => 'ACTION',
+        'Protocol' => 'PROTOCOL',
+        'Port' => 'PORT');
+} else {
+    $list_fields = array(
+        'Name' => 'DISPLAYNAME',
+        'Description' => 'DESCRIPTION',
+        'Direction' => 'DIRECTION',
+        'Enabled' => 'ENABLED',
+        'Action' => 'ACTION',
+        'Protocol' => 'PROTOCOL',
+        'Port' => 'PORT');
+}
+
+
 // columns to include at any time and default columns
 $list_col_cant_del = $list_fields;
 $default_fields = $list_fields;
