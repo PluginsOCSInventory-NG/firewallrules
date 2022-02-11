@@ -36,6 +36,8 @@ echo open_form($form_name);
 $list_fields = array(
                     'Name' => 'DISPLAYNAME',
                     'Description' => 'DESCRIPTION',
+                    'Source' => 'SOURCE',
+                    'Destination' => 'DESTINATION',
                     'Direction' => 'DIRECTION',
                     'Enabled' => 'ENABLED',
                     'Action' => 'ACTION',
