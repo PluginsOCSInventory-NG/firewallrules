@@ -41,8 +41,6 @@ if (preg_match('/unix/', $item->USERAGENT)) {
         'Description' => 'DESCRIPTION',
         'Source' => 'SOURCE',
         'Destination' => 'DESTINATION',
-        'Direction' => 'DIRECTION',
-        'Enabled' => 'ENABLED',
         'Action' => 'ACTION',
         'Protocol' => 'PROTOCOL',
         'Port' => 'PORT');
@@ -50,8 +48,8 @@ if (preg_match('/unix/', $item->USERAGENT)) {
     $list_fields = array(
         'Name' => 'DISPLAYNAME',
         'Description' => 'DESCRIPTION',
-        'Direction' => 'DIRECTION',
         'Enabled' => 'ENABLED',
+        'Direction' => 'DIRECTION',
         'Action' => 'ACTION',
         'Protocol' => 'PROTOCOL',
         'Port' => 'PORT');

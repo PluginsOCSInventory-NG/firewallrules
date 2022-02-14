@@ -58,7 +58,7 @@ sub firewallrules_inventory_handler {
         if ($rule =~ /Chain/) {
             (undef, $direction, undef, undef) = split(' ', $rule);
         } else {
-            ($action, $protocol, $opt, $source, $destination, $comment) = split(' ', $rule);
+            ($action, $protocol, $opt, $source, $destination, $comment, $other) = split(' ', $rule);
         }
 
         push @{$common->{xmltags}->{FIREWALLRULES}},
@@ -67,9 +67,8 @@ sub firewallrules_inventory_handler {
             DESCRIPTION    => ["$source => $destination"],
             SOURCE => [$source],
             DESTINATION => [$destination],
-            DIRECTION  => [$direction],
             ACTION  => [$action],
-            PORT  => [$comment],
+            PORT  => ["$comment $other"],
             PROTOCOL => [$protocol]
         };
     }
