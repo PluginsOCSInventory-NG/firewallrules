@@ -31,7 +31,7 @@ $tab_options = $protectedPost;
 $tab_options['form_name'] = $form_name;
 $tab_options['table_name'] = $table_name;
 
-$item = info($protectedGet, $protectedPost['systemid']);
+$item = info($protectedGet, $protectedPost['systemid'] ?? '');
 
 echo open_form($form_name);
 
